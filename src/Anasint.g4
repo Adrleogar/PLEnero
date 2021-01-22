@@ -9,5 +9,7 @@ variables: VARIABLES declaraciones*;
 
 declaraciones: IDENTIFICADOR (COMA IDENTIFICADOR)* DPS (NUM | SEQ PA NUM PC);
 
+
+//aaaa
 instrucciones:
 
