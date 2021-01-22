@@ -18,3 +18,6 @@ Objetivo 5:
 La expresión AND, OR y NOT no se pueden utilizar con enteros
 ni secuencias sólos, solo se utilizará
 en expresiones booleanas anteriores
+
+Decision de diseño 1:
+El objetivo 0 requiere la creación de un almacén de variables
