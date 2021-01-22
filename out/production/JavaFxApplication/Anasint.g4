@@ -1,29 +1,40 @@
 parser grammar Anasint;
 options{
- tokenVocab=Analex;
+    tokenVocab=Analex;
 }
-sentencia : variables expr EOF;
-variables : decl_vars PyC ;
-tipo: ENTERO
- | BOOLEANO
- ;
-decl_vars : IDENT tipo COMA decl_vars
- | IDENT tipo
- ;
-expr : expr1 (Y expr | O expr) #Expr_Y_O
- | NO expr #Expr_NO
- | expr1 #Rel ;
-expr1 : expr2 (MAYOR expr2 | MENOR expr2 | IGUAL expr2)
-#Rel_MAYOR_MENOR_IGUAL
- | expr2 #Term
- ;
-expr2 : expr3 (MAS expr2 | MENOS expr2 | POR expr2) #Term_MAS_MENOS_POR
- | expr3 (DIV expr2) #Term_DIV
- | expr3 #Term_Base
- ;
-expr3 : IDENT #Id
- | NUMERO #Num
- | CIERTO #T
- | FALSO #F
- | PA expr PC #ParExpr
- ;
+
+sentencia: PROGRAMA variables SUBPROGRAMAS INSTRUCCIONES instrucciones EOF;
+
+variables: VARIABLES (declaraciones)*;
+
+declaraciones: IDENTIFICADOR (COMA IDENTIFICADOR)* DPS (NUM | SEQ PA NUM PC) PYC;
+
+instrucciones:  (operacion PYC
+               | asignacion PYC
+               | condicional PYC
+               | iteracion PYC
+               | ruptura PYC
+               )*;
+
+operacion: (ENTERO | IDENTIFICADOR) OP_SR (operacion)+
+         | (ENTERO | IDENTIFICADOR) OP_MULT (operacion)+
+         | (ENTERO | IDENTIFICADOR)
+         ;
+operaciones: operacion (COMA operacion)*; //Se hace esto para incluir operaciones separadas entre comas
+secuencia: CA operaciones CC;
+
+expr: operacion | secuencia;
+exprs: expr (COMA expr)*;
+
+asignacion: IDENTIFICADOR (COMA IDENTIFICADOR)* IGUAL (exprs);
+
+condicional: SI PA expr_bool PC ENTONCES instrucciones (SINO instrucciones)? FSI;
+
+expr_bool: CIERTO
+         | FALSO
+         | expr COMPARADORES expr;
+
+iteracion: MIENTRAS PA expr_bool PC HACER instrucciones FMIENTRAS;
+
+ruptura: RUPTURA;
+

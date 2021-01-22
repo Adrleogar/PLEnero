@@ -42,5 +42,5 @@ PA: '(';
 PC: ')';
 
 COMENTARIO_BLOQUE: '/' .? '*/' -> skip ;
-COMENTARIO_LINEA'//' .*? FIN_LINEA -> skip ;
+COMENTARIO_LINEA:'//' .*? FIN_LINEA -> skip ;
 IDENTIFICADOR: LETRA (LETRA | DIGITO | '_')*;

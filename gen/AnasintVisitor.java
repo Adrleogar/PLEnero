@@ -22,106 +22,75 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariables(Anasint.VariablesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Anasint#tipo}.
+	 * Visit a parse tree produced by {@link Anasint#declaraciones}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTipo(Anasint.TipoContext ctx);
+	T visitDeclaraciones(Anasint.DeclaracionesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Anasint#decl_vars}.
+	 * Visit a parse tree produced by {@link Anasint#instrucciones}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDecl_vars(Anasint.Decl_varsContext ctx);
+	T visitInstrucciones(Anasint.InstruccionesContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Expr_Y_O}
-	 * labeled alternative in {@link Anasint#expr}.
+	 * Visit a parse tree produced by {@link Anasint#operacion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr_Y_O(Anasint.Expr_Y_OContext ctx);
+	T visitOperacion(Anasint.OperacionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Expr_NO}
-	 * labeled alternative in {@link Anasint#expr}.
+	 * Visit a parse tree produced by {@link Anasint#operaciones}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr_NO(Anasint.Expr_NOContext ctx);
+	T visitOperaciones(Anasint.OperacionesContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Rel}
-	 * labeled alternative in {@link Anasint#expr}.
+	 * Visit a parse tree produced by {@link Anasint#secuencia}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRel(Anasint.RelContext ctx);
+	T visitSecuencia(Anasint.SecuenciaContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Rel_MAYOR_MENOR_IGUAL}
-	 * labeled alternative in {@link Anasint#expr1}.
+	 * Visit a parse tree produced by {@link Anasint#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRel_MAYOR_MENOR_IGUAL(Anasint.Rel_MAYOR_MENOR_IGUALContext ctx);
+	T visitExpr(Anasint.ExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Term}
-	 * labeled alternative in {@link Anasint#expr1}.
+	 * Visit a parse tree produced by {@link Anasint#exprs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTerm(Anasint.TermContext ctx);
+	T visitExprs(Anasint.ExprsContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Term_MAS_MENOS_POR}
-	 * labeled alternative in {@link Anasint#expr2}.
+	 * Visit a parse tree produced by {@link Anasint#asignacion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTerm_MAS_MENOS_POR(Anasint.Term_MAS_MENOS_PORContext ctx);
+	T visitAsignacion(Anasint.AsignacionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Term_DIV}
-	 * labeled alternative in {@link Anasint#expr2}.
+	 * Visit a parse tree produced by {@link Anasint#condicional}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTerm_DIV(Anasint.Term_DIVContext ctx);
+	T visitCondicional(Anasint.CondicionalContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Term_Base}
-	 * labeled alternative in {@link Anasint#expr2}.
+	 * Visit a parse tree produced by {@link Anasint#expr_bool}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTerm_Base(Anasint.Term_BaseContext ctx);
+	T visitExpr_bool(Anasint.Expr_boolContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Id}
-	 * labeled alternative in {@link Anasint#expr3}.
+	 * Visit a parse tree produced by {@link Anasint#iteracion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitId(Anasint.IdContext ctx);
+	T visitIteracion(Anasint.IteracionContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Num}
-	 * labeled alternative in {@link Anasint#expr3}.
+	 * Visit a parse tree produced by {@link Anasint#ruptura}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNum(Anasint.NumContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code T}
-	 * labeled alternative in {@link Anasint#expr3}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitT(Anasint.TContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code F}
-	 * labeled alternative in {@link Anasint#expr3}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitF(Anasint.FContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ParExpr}
-	 * labeled alternative in {@link Anasint#expr3}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParExpr(Anasint.ParExprContext ctx);
+	T visitRuptura(Anasint.RupturaContext ctx);
 }
