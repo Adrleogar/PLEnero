@@ -26,7 +26,7 @@ MIENTRAS: 'mientras';
 FMIENTRAS: 'fmientras';
 HACER: 'hacer';
 
-COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=';
+COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=' | '&&' | '||' | '!' ;
 IGUAL: '=';
 
 GUION : '-';

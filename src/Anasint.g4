@@ -22,6 +22,7 @@ operacion: (ENTERO | IDENTIFICADOR) OP_SR (operacion)+
          | (ENTERO | IDENTIFICADOR) OP_MULT (operacion)+
          | (ENTERO | IDENTIFICADOR)
          ;
+
 operaciones: operacion (COMA operacion)*; //Se hace esto para incluir operaciones separadas entre comas
 secuencia: CA operaciones CC;
 

@@ -1,0 +1,20 @@
+Objetivo 0:
+No tiene sentido igualar dos tipos de variables distintas;
+
+Objetivo 1:
+No tiene sentido operar con dos tipos de variables distintas;
+
+Objetivo 2:
+No tiene sentido comparar dos tipos de variables distintos;
+
+Objetivo 3:
+Cuando se realiza una asignación múltiple, a ambos lados
+del igual tiene que ocurrir el mismo número de operaciones/expresiones
+
+Objetivo 4:
+La instrucción ruptura sólo puede estar dentro de una iteración mientras
+
+Objetivo 5:
+La expresión AND, OR y NOT no se pueden utilizar con enteros
+ni secuencias sólos, solo se utilizará
+en expresiones booleanas anteriores
