@@ -1,8 +1,8 @@
 PROGRAMA
 
 VARIABLES
-s:SEQ(NUM);
 i,max,min:NUM;
+s:SEQ(NUM);
 
 SUBPROGRAMAS
 

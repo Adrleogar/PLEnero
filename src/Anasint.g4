@@ -7,7 +7,9 @@ sentencia: PROGRAMA variables SUBPROGRAMAS INSTRUCCIONES instrucciones EOF;
 
 variables: VARIABLES (declaraciones)*;
 
-declaraciones: IDENTIFICADOR (COMA IDENTIFICADOR)* DPS (NUM | SEQ PA NUM PC) PYC;
+tipo: NUM | SEQ PA NUM PC;
+
+declaraciones: IDENTIFICADOR (COMA IDENTIFICADOR)* DPS tipo PYC;
 
 instrucciones:  (operacion PYC
                | asignacion PYC

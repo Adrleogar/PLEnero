@@ -39,6 +39,18 @@ public class AnasintBaseListener implements AnasintListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTipo(Anasint.TipoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTipo(Anasint.TipoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDeclaraciones(Anasint.DeclaracionesContext ctx) { }
 	/**
 	 * {@inheritDoc}
