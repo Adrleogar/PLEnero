@@ -46,6 +46,12 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOperacion(Anasint.OperacionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Anasint#ultima_posicion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUltima_posicion(Anasint.Ultima_posicionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Anasint#operaciones}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -87,6 +93,12 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpr_bool(Anasint.Expr_boolContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#vacio}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVacio(Anasint.VacioContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Anasint#iteracion}.
 	 * @param ctx the parse tree

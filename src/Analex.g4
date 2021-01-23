@@ -25,6 +25,8 @@ FSI: 'fsi';
 MIENTRAS: 'mientras';
 FMIENTRAS: 'fmientras';
 HACER: 'hacer';
+ULTIMAPOSICION: 'ULTIMAPOSICION';
+VACIO: 'VACIO';
 
 COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=' | '&&' | '||' | '!' ;
 IGUAL: '=';

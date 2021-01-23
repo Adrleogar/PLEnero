@@ -6,6 +6,11 @@ public class VariableP {
     Ptype tipo;
     List<Integer> Valores;
 
+    public VariableP(String nombre, Ptype tipo) {
+        this.nombre = nombre;
+        this.tipo= tipo;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

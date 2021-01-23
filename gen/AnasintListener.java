@@ -67,6 +67,16 @@ public interface AnasintListener extends ParseTreeListener {
 	 */
 	void exitOperacion(Anasint.OperacionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link Anasint#ultima_posicion}.
+	 * @param ctx the parse tree
+	 */
+	void enterUltima_posicion(Anasint.Ultima_posicionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Anasint#ultima_posicion}.
+	 * @param ctx the parse tree
+	 */
+	void exitUltima_posicion(Anasint.Ultima_posicionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link Anasint#operaciones}.
 	 * @param ctx the parse tree
 	 */
@@ -136,6 +146,16 @@ public interface AnasintListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr_bool(Anasint.Expr_boolContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link Anasint#vacio}.
+	 * @param ctx the parse tree
+	 */
+	void enterVacio(Anasint.VacioContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Anasint#vacio}.
+	 * @param ctx the parse tree
+	 */
+	void exitVacio(Anasint.VacioContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link Anasint#iteracion}.
 	 * @param ctx the parse tree

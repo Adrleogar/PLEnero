@@ -19,5 +19,13 @@ La expresión AND, OR y NOT no se pueden utilizar con enteros
 ni secuencias sólos, solo se utilizará
 en expresiones booleanas anteriores
 
+Objetivo 6:
+Comprobar si es una secuencia y si existe
+
+Objetivo 7:
+No se podrá utilizar tipos que no existan en el lenguaje P
+
+
 Decision de diseño 1:
 El objetivo 0 requiere la creación de un almacén de variables
+
