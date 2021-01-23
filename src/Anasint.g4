@@ -38,8 +38,10 @@ condicional: SI PA expr_bool PC ENTONCES instrucciones (SINO instrucciones)? FSI
 
 expr_bool: CIERTO
          | FALSO
-         | expr COMPARADORES expr
+         | comparacion
          | vacio;
+
+comparacion: expr COMPARADORES expr;
 
 vacio: VACIO CA IDENTIFICADOR CC;
 

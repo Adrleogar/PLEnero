@@ -1,18 +1,18 @@
 Objetivo 0:
-No tiene sentido igualar dos tipos de variables distintas;
+No tiene sentido igualar dos tipos de variables distintas; LISTO
 
 Objetivo 1:
-No tiene sentido operar con dos tipos de variables distintas;
+No tiene sentido operar con dos tipos de variables distintas; LISTO
 
 Objetivo 2:
-No tiene sentido comparar dos tipos de variables distintos;
+No tiene sentido comparar dos tipos de variables distintos; LISTO
 
 Objetivo 3:
 Cuando se realiza una asignación múltiple, a ambos lados
-del igual tiene que ocurrir el mismo número de operaciones/expresiones
+del igual tiene que ocurrir el mismo número de operaciones/expresiones.LISTO
 
 Objetivo 4:
-La instrucción ruptura sólo puede estar dentro de una iteración mientras
+La instrucción ruptura sólo puede estar dentro de una iteración mientras LISTO
 
 Objetivo 5:
 La expresión AND, OR y NOT no se pueden utilizar con enteros
@@ -23,9 +23,14 @@ Objetivo 6:
 Comprobar si es una secuencia y si existe
 
 Objetivo 7:
-No se podrá utilizar tipos que no existan en el lenguaje P
+No se podrá utilizar tipos que no existan en el lenguaje P  LISTO
 
+Objetivo 8:
+No se podrán utilizar variables que no han sido previamente definidas
+
+Objetivo 9:
+No se puede asignar una variable de tipo ENTERO a una variable de tipo SEQ, y viceversa LISTO
 
 Decision de diseño 1:
 El objetivo 0 requiere la creación de un almacén de variables
-
+TERMINADO
