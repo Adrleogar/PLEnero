@@ -115,5 +115,17 @@ public class AnasemListener extends AnasintBaseListener {
         }
     }
 
-    
+    @Override
+    public void enterExpr_bool(Anasint.Expr_boolContext ctx) {
+
+        if(ctx.getRuleIndex()==24){
+            if(mapaVariables.containsKey(ctx.getText())){
+                VariableP var=mapaVariables.get(ctx.getText());
+                if(var.getTipo().equals(Ptype.ENTERO)){
+                    System.out.println("ERROR");
+                }
+            }
+        }
+        //PENDIENTE AUN POR REVISAR
+    }
 }
