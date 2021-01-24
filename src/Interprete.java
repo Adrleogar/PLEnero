@@ -7,14 +7,14 @@ public class Interprete extends AnasintBaseVisitor {
 
 
     /*
-    1. Sacar el valor de TODAS las operaciones
-    2. Añadir cada modificacion de cada variable al almacen de variables
+    1. Sacar el valor de TODAS las operaciones HECHO
+    2. Añadir cada modificacion de cada variable al almacén de variables FALTA ESTE
     3. Evaluar las comparaciones HECHO
     4. Sacar la última posicion HECHO
     5. Realizar las iteraciones TENIENDO EN CUENTA LA RUPTURA HECHO
     6. Evaluar si una secuencia está vacía o no HECHO
     7. Evaluar cada expresión Booleana HECHO
-    8. Evaluar los condicionales (37)
+    8. Evaluar los condicionales HECHO
 
     *. Visitar CADA sentencia dedicada en el Anasint. (Puede crear más objetivos)
 
@@ -149,7 +149,53 @@ public class Interprete extends AnasintBaseVisitor {
         } else if(ctx.instrucciones().size()==2){
             visit(ctx.instrucciones(1));
         }
+        return 1;
+    }
+
+    @Override
+    public Integer visitOperaciones(Anasint.OperacionesContext ctx) {
+
+        for(int i = 0; i < ctx.operacion().size(); i++){
+
+            visit(ctx.operacion(i));
+        }
 
         return 1;
+    }
+
+    @Override
+    public Object visitOperacion(Anasint.OperacionContext ctx) {
+
+        if(ctx.getChild(1).getText() == "+"){
+            Integer primerValor = (Integer) visit(ctx.operacion(0));
+            Integer segundoValor = (Integer) visit(ctx.operacion(1));
+
+            Integer suma = primerValor + segundoValor;
+
+            return suma;
+        }else if(ctx.getChild(1).getText() == "-"){
+            Integer primerValor = (Integer) visit(ctx.operacion(0));
+            Integer segundoValor = (Integer) visit(ctx.operacion(1));
+
+            Integer resta = primerValor + segundoValor;
+
+            return resta;
+        }else if(ctx.getChild(1).getText() == "*"){
+            Integer primerValor = (Integer) visit(ctx.operacion(0));
+            Integer segundoValor = (Integer) visit(ctx.operacion(1));
+
+            Integer mult = primerValor + segundoValor;
+
+            return mult;
+        }else if(ctx.getChild(0).getText() == "ULTIMAPOSICION"){
+            return visit(ctx.ultima_posicion());
+        }else{
+            Boolean var = AnasemListener.mapaVariables.containsKey(ctx.getText());
+            if(var){
+                return AnasemListener.mapaVariables.get(ctx.getText());
+            }else{
+                return Integer.valueOf(ctx.getText());
+            }
+        }
     }
 }
