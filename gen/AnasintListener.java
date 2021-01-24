@@ -147,6 +147,16 @@ public interface AnasintListener extends ParseTreeListener {
 	 */
 	void exitExpr_bool(Anasint.Expr_boolContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link Anasint#comparacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparacion(Anasint.ComparacionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link Anasint#comparacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparacion(Anasint.ComparacionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link Anasint#vacio}.
 	 * @param ctx the parse tree
 	 */

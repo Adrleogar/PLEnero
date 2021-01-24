@@ -18,10 +18,14 @@ instrucciones:  (operacion PYC
                | ruptura PYC
                )*;
 
-operacion: (ENTERO | IDENTIFICADOR) OP_SR (operacion)+
-         | (ENTERO | IDENTIFICADOR) OP_MULT (operacion)+
+operacion: operacion OP_SR (operacion)+
+         | operacion OP_MULT (operacion)+
          | (ENTERO | IDENTIFICADOR)
+         | ultima_posicion
          ;
+
+ultima_posicion: ULTIMAPOSICION CA IDENTIFICADOR CC;
+
 operaciones: operacion (COMA operacion)*; //Se hace esto para incluir operaciones separadas entre comas
 secuencia: CA operaciones CC;
 
@@ -34,7 +38,12 @@ condicional: SI PA expr_bool PC ENTONCES instrucciones (SINO instrucciones)? FSI
 
 expr_bool: CIERTO
          | FALSO
-         | expr COMPARADORES expr;
+         | comparacion
+         | vacio;
+
+comparacion: expr? COMPARADORES expr;
+
+vacio: VACIO CA IDENTIFICADOR CC;
 
 iteracion: MIENTRAS PA expr_bool PC HACER instrucciones FMIENTRAS;
 

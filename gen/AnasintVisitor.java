@@ -94,6 +94,12 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpr_bool(Anasint.Expr_boolContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Anasint#comparacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparacion(Anasint.ComparacionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Anasint#vacio}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

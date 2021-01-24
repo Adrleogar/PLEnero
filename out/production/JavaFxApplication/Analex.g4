@@ -25,8 +25,10 @@ FSI: 'fsi';
 MIENTRAS: 'mientras';
 FMIENTRAS: 'fmientras';
 HACER: 'hacer';
+ULTIMAPOSICION: 'ULTIMAPOSICION';
+VACIO: 'VACIO';
 
-COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=';
+COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=' | '&&' | '||' | '!' ;
 IGUAL: '=';
 
 GUION : '-';
@@ -40,6 +42,7 @@ DPS: ':';
 
 PA: '(';
 PC: ')';
+RUPTURA : 'RUPTURA';
 
 COMENTARIO_BLOQUE: '/' .? '*/' -> skip ;
 COMENTARIO_LINEA:'//' .*? FIN_LINEA -> skip ;

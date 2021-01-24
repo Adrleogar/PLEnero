@@ -8,6 +8,11 @@ import java.util.Map;
 public class AnasemListener extends AnasintBaseListener {
 
     static Map<String, VariableP> mapaVariables = new HashMap();
+
+    public Map<String, VariableP> getMapaVariables(){
+        return this.mapaVariables;
+    }
+
     public void exitDeclaraciones(Anasint.DeclaracionesContext ctx) { //Método para crear el almacen de variables
 
         for(int i=0; i<ctx.IDENTIFICADOR().size(); i++){
@@ -37,7 +42,7 @@ public class AnasemListener extends AnasintBaseListener {
 
         for(int i=0; i<ctx.IDENTIFICADOR().size(); i++){
             if(!mapaVariables.containsKey(ctx.IDENTIFICADOR(i).getText())) {
-                System.out.println("ERROR, TIPO NO VÁLIDO");
+                System.out.println("ERROR, VARIABLE NO DEFINIDA");
                 System.exit(1);
             }
             String s = ctx.IDENTIFICADOR(i).getText();
@@ -47,7 +52,7 @@ public class AnasemListener extends AnasintBaseListener {
             }else if(mapaVariables.get(s).getTipo().equals(Ptype.SEQNUM)&&ctx.exprs().expr(i).getRuleIndex()==8){
 
             }else{
-                System.out.println("ERROR");
+                System.out.println("ERROR, SE ESTÁN ASIGNANDO VARIABLES DE DISTINTO TIPO");
                 System.exit(1);
             }
         }
@@ -56,7 +61,7 @@ public class AnasemListener extends AnasintBaseListener {
     @Override
     public void exitRuptura(Anasint.RupturaContext ctx) {
         if(ctx.getParent().getRuleIndex()==15){
-        } else if (esParentunMientras(ctx)){
+        } else if (esParentunMientras(ctx)){ //Aquí no sabemos si aún estamos dentro de un mientras
 
         }else {
             System.out.println("ERROR");
@@ -67,36 +72,43 @@ public class AnasemListener extends AnasintBaseListener {
     private Boolean esParentunMientras(ParserRuleContext ctx){
         Boolean res=null;
 
-        if(ctx.getParent().getRuleIndex()!=4){
-            res=false;
+        if(ctx.getParent().getRuleIndex()==0){ //Volvemos hasta la sentencia, si en el camino
+            res=false;                         //no hemos encontrado ningún While nos devuelve false
         } else if(ctx.getParent().getRuleIndex()==15){
-            res=true;
+            res=true; //Aquí nos hemos encontrado un bucle While por el camino y nos devuelve un true
         } else {
             res=esParentunMientras(ctx.getParent());
         }
         return res;
     }
 
-    @Override
-    public void exitExpr_bool(Anasint.Expr_boolContext ctx) {
-
-        if(ctx.getText().equals("T") || ctx.getText().equals("F")){
-
-        }else if(ctx.getChild(0).getText().equals("VACIO")){
-            VariableP s = mapaVariables.get(ctx.children.get(2).getText());
-            if (s.getTipo()!= Ptype.SEQNUM){
-                System.out.println("ERROR");
-                System.exit(1);
-            }
-        }else{
-            if(ctx.expr(0).getRuleIndex()==ctx.expr(1).getRuleIndex()){
-
-            }else{
-                System.out.println("ERROR");
-                System.exit(1);
-            }
-        }
-    }
+//    @Override
+//    public void exitExpr_bool(Anasint.Expr_boolContext ctx) {
+//
+//        if(ctx.getText().equals("T") || ctx.getText().equals("F")){
+//
+//        }else if(ctx.getChild(0).getText().equals("VACIO")){
+//            if(mapaVariables.containsKey(ctx.getChild(2).getText())){
+//
+//            }else{
+//                System.out.println("ERROR, NO EXISTE LA SECUENCIA");
+//                System.exit(1);
+//            }
+//            VariableP s = mapaVariables.get(ctx.children.get(2).getText());
+//
+//            if (s.getTipo()!= Ptype.SEQNUM){
+//                System.out.println("ERROR, NO ES EL MISMO TIPO");
+//                System.exit(1);
+//            }
+//        }else{
+//            if(ctx.expr(0).getRuleIndex()==ctx.expr(1).getRuleIndex()){
+//
+//            }else{
+//                System.out.println("ERROR, COMPARACIÓN ERRÓNEA");
+//                System.exit(1);
+//            }
+//        }
+//    }
 
     @Override
     public void exitOperacion(Anasint.OperacionContext ctx) {
@@ -115,17 +127,35 @@ public class AnasemListener extends AnasintBaseListener {
         }
     }
 
-    @Override
-    public void enterExpr_bool(Anasint.Expr_boolContext ctx) {
-
-        if(ctx.getRuleIndex()==24){
-            if(mapaVariables.containsKey(ctx.getText())){
-                VariableP var=mapaVariables.get(ctx.getText());
-                if(var.getTipo().equals(Ptype.ENTERO)){
-                    System.out.println("ERROR");
-                }
-            }
-        }
-        //PENDIENTE AUN POR REVISAR
-    }
+//    @Override
+//    public void enterExpr_Bool(Anasint.Expr_boolContext ctx){
+//        if(ctx.getText()=="T"||ctx.getText()=="F"||ctx.getChild().getText().equals("VACIO")){
+//        }else{
+//            for( s: ctx.expr()){
+//                if(!mapaVariables.containsKey(s)){
+//                    ERROR
+//                }
+//        }
+//            String comp = ctx.COMPARADOR().getText();
+//
+//            IF(ctx.expr.getRuleNomeacuerdocomosellamaestemetodo() == numerodeOperacion){
+//                if(comp.equals("==")||comp.equals("=!")){
+//                    if(mapaVariables.get(ctx.expr().getText()).getTipo().equals(Ptype.SeqNum)&&
+//                            mapaVariables.get(ctx.expr().getText()).getTipo().equals(Ptype.SeqNum)){
+//                        ERROR
+//                    }
+//                }else if((comp.equals("&&")|| comp.equals("||"))&&
+//                        mapaVariables.get(ctx.expr(0).getTipo().equals(Ptype.ENTERO))||
+//                        mapaVariables.get(ctx.expr(1).getTipo().equals(Ptype.ENTERO))
+//                ){ ERROR
+//                }else if(comp.equals("!")){
+//                    ERROR
+//                }else if(comp.equals("<")||comp.equals(">")||comp.equals(<=)||comp.equals(>=)){
+//                    mapavariables.get(ctx.expr(0)).getTipo().equals(Ptype.SEQNUM)||
+//                            mapaVariables.get(ctx.expr(1)).getTipo().equals(Ptype.SEQNUM))
+//                    ERROR
+//                }
+//            }
+//        }
+//    }
 }
