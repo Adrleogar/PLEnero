@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Interprete extends AnasintBaseVisitor {
 
-
     /*
     1. Sacar el valor de TODAS las operaciones HECHO
     2. Añadir cada modificacion de cada variable al almacén de variables FALTA ESTE
