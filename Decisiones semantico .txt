@@ -12,7 +12,7 @@ Cuando se realiza una asignación múltiple, a ambos lados
 del igual tiene que ocurrir el mismo número de operaciones/expresiones.LISTO exitAsignacion
 
 Objetivo 4:
-La instrucción ruptura sólo puede estar dentro de una iteración mientras LISTO exitRuptura
+La instrucción ruptura sólo puede estar dentro de una iteración mientras LISTO exitRuptura   O UN SI O UN SINO
 
 Objetivo 5:
 Los comparadores deberán tener coherencia lógica LISTO enterExpr_bool último
