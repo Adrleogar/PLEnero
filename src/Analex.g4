@@ -12,7 +12,7 @@ SUBPROGRAMAS: 'SUBPROGRAMAS';
 INSTRUCCIONES: 'INSTRUCCIONES';
 
 NUM: 'NUM';
-ENTERO: DIGITO+;
+ENTERO: ('-')? DIGITO+;
 SEQ: 'SEQ';
 OP_MULT: '*';
 OP_SR: '+' | '-';
@@ -25,8 +25,8 @@ FSI: 'fsi';
 MIENTRAS: 'mientras';
 FMIENTRAS: 'fmientras';
 HACER: 'hacer';
-ULTIMAPOSICION: 'ULTIMAPOSICION';
-VACIO: 'VACIO';
+ULTIMA_POSICION: 'ultima_posicion';
+VACIA: 'VACIA';
 
 COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=' | '&&' | '||' | '!' ;
 IGUAL: '=';

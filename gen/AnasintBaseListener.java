@@ -1,4 +1,4 @@
-// Generated from C:/Users/adria/IdeaProjects/apoyoPL/src\Anasint.g4 by ANTLR 4.9
+// Generated from C:/Users/Fran/IdeaProjects/ProyectoEnero1/src\Anasint.g4 by ANTLR 4.8
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -118,6 +118,18 @@ public class AnasintBaseListener implements AnasintListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSecuencia(Anasint.SecuenciaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAcceso_secuencia(Anasint.Acceso_secuenciaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAcceso_secuencia(Anasint.Acceso_secuenciaContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

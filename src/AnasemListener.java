@@ -110,10 +110,12 @@ public class AnasemListener extends AnasintBaseListener {
 //        }
 //    }
 
+
+
     @Override
     public void exitOperacion(Anasint.OperacionContext ctx) {
 
-        if(ctx.getRuleContext().equals(38)){
+        if(ctx.getRuleContext().equals(39)){
             if(mapaVariables.containsKey(ctx.getText())){
                 VariableP val = mapaVariables.get(ctx.getText());
                 if(!val.getTipo().equals(Ptype.ENTERO)){
@@ -121,11 +123,25 @@ public class AnasemListener extends AnasintBaseListener {
                     System.exit(1);
                 }
             }else {
-                System.out.println("ERROR");
-                System.exit(1);
+
+                if(ctx.getRuleIndex() == 9){
+
+                    if(mapaVariables.containsKey(ctx.getChild(0).getText())){
+                        VariableP val = mapaVariables.get(ctx.getText());
+                    }else{
+                        System.out.println("ERROR");
+                        System.exit(1);
+                    }
+                }
+
             }
         }
+
+
+
     }
+
+
 
 //    @Override
 //    public void enterExpr_Bool(Anasint.Expr_boolContext ctx){

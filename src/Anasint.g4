@@ -22,12 +22,15 @@ operacion: operacion OP_SR (operacion)+
          | operacion OP_MULT (operacion)+
          | (ENTERO | IDENTIFICADOR)
          | ultima_posicion
+         | acceso_secuencia
          ;
 
-ultima_posicion: ULTIMAPOSICION CA IDENTIFICADOR CC;
+ultima_posicion: ULTIMA_POSICION CA IDENTIFICADOR CC;
 
 operaciones: operacion (COMA operacion)*; //Se hace esto para incluir operaciones separadas entre comas
 secuencia: CA operaciones CC;
+
+acceso_secuencia: IDENTIFICADOR CA operacion CC;
 
 expr: operacion | secuencia;
 exprs: expr (COMA expr)*;

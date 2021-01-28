@@ -1,4 +1,4 @@
-// Generated from C:/Users/adria/IdeaProjects/apoyoPL/src\Anasint.g4 by ANTLR 4.9
+// Generated from C:/Users/Fran/IdeaProjects/ProyectoEnero1/src\Anasint.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -63,6 +63,12 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSecuencia(Anasint.SecuenciaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link Anasint#acceso_secuencia}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAcceso_secuencia(Anasint.Acceso_secuenciaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Anasint#expr}.
 	 * @param ctx the parse tree

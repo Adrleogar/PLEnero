@@ -114,6 +114,7 @@ public class Interprete extends AnasintBaseVisitor {
         return res;
     }
 
+
     @Override
     public Object visitIteracion(Anasint.IteracionContext ctx) {
 
@@ -160,6 +161,20 @@ public class Interprete extends AnasintBaseVisitor {
         }
 
         return 1;
+    }
+
+    @Override
+    public Object visitAcceso_secuencia(Anasint.Acceso_secuenciaContext ctx) {
+
+        if((int)visit(ctx.operacion()) > Integer.valueOf(AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText()).getValores().size())){
+            System.out.println("ERROR");
+            System.exit(1);
+        }else{
+            VariableP v = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText());
+
+            return v.getValores().get((int)visit(ctx.operacion()));
+        }
+        return "";
     }
 
     @Override

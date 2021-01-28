@@ -18,7 +18,11 @@ Objetivo 5:
 Los comparadores deberán tener coherencia lógica LISTO enterExpr_bool último
 
 Objetivo 6:
+<<<<<<< Updated upstream
 Comprobar si es una secuencia y si existe FUNCION VACIO LISTO exitExpr_bool
+=======
+Comprobar si es una secuencia y si existe LISTO
+>>>>>>> Stashed changes
 
 Objetivo 7:
 No se podrá utilizar tipos que no existan en el lenguaje P  LISTO exitDeclaraciones
