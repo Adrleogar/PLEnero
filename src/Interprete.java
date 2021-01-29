@@ -24,7 +24,9 @@ public class Interprete extends AnasintBaseVisitor {
     {funcion f (visita vacío) devuelve var}
     Boolean var = vacíoFuncionLlamada(IDENTIFICADOR)?
      */
-    public Boolean visitVacio(Anasint.VaciaContext ctx) {
+
+    @Override
+    public Boolean visitVacia(Anasint.VaciaContext ctx) {
         Boolean res = false;
         VariableP var = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR());
         if (var.Valores.isEmpty()) {
@@ -169,7 +171,7 @@ public class Interprete extends AnasintBaseVisitor {
         if((int)visit(ctx.operacion()) > Integer.valueOf(AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText()).getValores().size())){
             System.out.println("ERROR");
             System.exit(1);
-        }else{
+        }else if(visit(ctx.)){
             VariableP v = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText());
 
             return v.getValores().get((int)visit(ctx.operacion()));
@@ -224,13 +226,14 @@ public class Interprete extends AnasintBaseVisitor {
         return res;
     }
 
+
     @Override
     public Object visitVisitUltimaPos(Anasint.VisitUltimaPosContext ctx) {
-        Integer res=null;
-        VariableP var=AnasemListener.mapaVariables.get(ctx.ultima_posicion().IDENTIFICADOR());
-        res=var.getValores().get(var.getValores().size()-1);
-        return res;
+        return visit(ctx.ultima_posicion());
     }
 
-    
+    @Override
+    public Object visitVisitAcceso(Anasint.VisitAccesoContext ctx) {
+        return visit(ctx.acceso_secuencia());
+    }
 }

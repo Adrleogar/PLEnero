@@ -188,4 +188,13 @@ public class AnasemListener extends AnasintBaseListener {
             System.exit(1);
         }
     }
+
+    @Override
+    public void exitAcceso_secuencia(Anasint.Acceso_secuenciaContext ctx) {
+        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR());
+        if(var.getTipo().equals(Ptype.ENTERO)){
+            System.out.println("ERROR, ES UN ENTERO Y NO SE PUEDE ACCEDER");
+            System.exit(1);
+        }
+    }
 }
