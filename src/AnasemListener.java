@@ -112,34 +112,31 @@ public class AnasemListener extends AnasintBaseListener {
 
 
 
-    @Override
-    public void exitOperacion(Anasint.OperacionContext ctx) {
-
-        if(ctx.getRuleContext().equals(39)){
-            if(mapaVariables.containsKey(ctx.getText())){
-                VariableP val = mapaVariables.get(ctx.getText());
-                if(!val.getTipo().equals(Ptype.ENTERO)){
-                    System.out.println("ERROR");
-                    System.exit(1);
-                }
-            }else {
-
-                if(ctx.getRuleIndex() == 9){
-
-                    if(mapaVariables.containsKey(ctx.getChild(0).getText())){
-                        VariableP val = mapaVariables.get(ctx.getText());
-                    }else{
-                        System.out.println("ERROR");
-                        System.exit(1);
-                    }
-                }
-
-            }
-        }
-
-
-
-    }
+//    @Override
+//    public void exitOperacion(Anasint.OperacionContext ctx) {
+//
+//        if(ctx.getRuleContext().equals(39)){
+//            if(mapaVariables.containsKey(ctx.getText())){
+//                VariableP val = mapaVariables.get(ctx.getText());
+//                if(!val.getTipo().equals(Ptype.ENTERO)){
+//                    System.out.println("ERROR");
+//                    System.exit(1);
+//                }
+//            }else {
+//
+//                if(ctx.getRuleIndex() == 9){
+//
+//                    if(mapaVariables.containsKey(ctx.getChild(0).getText())){
+//                        VariableP val = mapaVariables.get(ctx.getText());
+//                    }else{
+//                        System.out.println("ERROR");
+//                        System.exit(1);
+//                    }
+//                }
+//
+//            }
+//        }
+    //}
 
 
 
@@ -179,7 +176,7 @@ public class AnasemListener extends AnasintBaseListener {
     @Override
     public void exitUltima_posicion(Anasint.Ultima_posicionContext ctx) {
         Integer res=null;
-        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR());
+        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR().getText());
         if(var.getTipo().equals(Ptype.ENTERO)){
             System.out.println("ERROR, NO SE PUEDE COMPROBAR LA ULTIMA POSICION DE UN ENTERO");
             System.exit(1);
@@ -191,16 +188,18 @@ public class AnasemListener extends AnasintBaseListener {
 
     @Override
     public void exitAcceso_secuencia(Anasint.Acceso_secuenciaContext ctx) {
-        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR());
+        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR().getText());
         if(var.getTipo().equals(Ptype.ENTERO)){
             System.out.println("ERROR, ES UN ENTERO Y NO SE PUEDE ACCEDER");
             System.exit(1);
         }
     }
-
+    /*
+    {}
+     */
     @Override
     public void exitMostrar(Anasint.MostrarContext ctx) {
-        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR());
+        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR().getText());
         if(var.getTipo().equals(Ptype.ENTERO)){
             System.out.println("ERROR, ES UN ENTERO Y NO SE PUEDE MOSTRAR");
             System.exit(1);

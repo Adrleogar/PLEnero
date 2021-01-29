@@ -2,6 +2,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Interprete extends AnasintBaseVisitor {
 
@@ -28,7 +29,7 @@ public class Interprete extends AnasintBaseVisitor {
     @Override
     public Boolean visitVacia(Anasint.VaciaContext ctx) {
         Boolean res = false;
-        VariableP var = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR());
+        VariableP var = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText());
         if (var.Valores.isEmpty()) {
             res = true;
         }
@@ -39,6 +40,22 @@ public class Interprete extends AnasintBaseVisitor {
     {funcion (visita expr_bool) devuelve var}
     Boolean var=varEvaluarExpr
      */
+
+    @Override
+    public Object visitAsignacion(Anasint.AsignacionContext ctx) {
+        for(int i = 0; i < ctx.IDENTIFICADOR().size(); i++){
+            VariableP var = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR(i).getText());
+            if(var.getTipo().equals(Ptype.ENTERO)){
+                var.setValores((List<Integer>) ctx.exprs().expr().get(i));
+                AnasemListener.mapaVariables.put(var.nombre, var);
+            } else if(var.getTipo().equals(Ptype.SEQNUM){
+                for(int j=0; j<var.getValores().size(); j++){
+                    
+                }
+            }
+        }
+
+    }
 
     @Override
     public Boolean visitExpr_bool(Anasint.Expr_boolContext ctx) {
