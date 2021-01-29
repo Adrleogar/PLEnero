@@ -1,4 +1,4 @@
-// Generated from C:/Users/Fran/IdeaProjects/ProyectoEnero1/src\Anasint.g4 by ANTLR 4.8
+// Generated from C:/Users/carli/Proyecto PL Convocatoria/PLEnero/src\Anasint.g4 by ANTLR 4.9
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -40,11 +40,47 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInstrucciones(Anasint.InstruccionesContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Anasint#operacion}.
+	 * Visit a parse tree produced by the {@code VisitEntero}
+	 * labeled alternative in {@link Anasint#operacion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOperacion(Anasint.OperacionContext ctx);
+	T visitVisitEntero(Anasint.VisitEnteroContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VisitOperacionMultiplicacion}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVisitOperacionMultiplicacion(Anasint.VisitOperacionMultiplicacionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VisitOperacionSumRest}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVisitOperacionSumRest(Anasint.VisitOperacionSumRestContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VisitIdentificador}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVisitIdentificador(Anasint.VisitIdentificadorContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VisitAcceso}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVisitAcceso(Anasint.VisitAccesoContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VisitUltimaPos}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVisitUltimaPos(Anasint.VisitUltimaPosContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Anasint#ultima_posicion}.
 	 * @param ctx the parse tree
@@ -106,11 +142,11 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitComparacion(Anasint.ComparacionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link Anasint#vacio}.
+	 * Visit a parse tree produced by {@link Anasint#vacia}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVacio(Anasint.VacioContext ctx);
+	T visitVacia(Anasint.VaciaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link Anasint#iteracion}.
 	 * @param ctx the parse tree

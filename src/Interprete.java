@@ -24,7 +24,7 @@ public class Interprete extends AnasintBaseVisitor {
     {funcion f (visita vacío) devuelve var}
     Boolean var = vacíoFuncionLlamada(IDENTIFICADOR)?
      */
-    public Boolean visitVacio(Anasint.VacioContext ctx) {
+    public Boolean visitVacio(Anasint.VaciaContext ctx) {
         Boolean res = false;
         VariableP var = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR());
         if (var.Valores.isEmpty()) {
@@ -47,7 +47,7 @@ public class Interprete extends AnasintBaseVisitor {
         } else if (ctx.getText().equals("F")) {
             res = false;
         } else if (ctx.getChild(0).getText().equals("VACIO")) {
-            res = (Boolean) visit(ctx.vacio());
+            res = (Boolean) visit(ctx.vacia());
         } else {
             res = (Boolean) visit(ctx.comparacion());
         }
@@ -178,38 +178,54 @@ public class Interprete extends AnasintBaseVisitor {
     }
 
     @Override
-    public Object visitOperacion(Anasint.OperacionContext ctx) {
+    public Object visitVisitOperacionSumRest(Anasint.VisitOperacionSumRestContext ctx) {
+        Integer res = null;
+        Object op_1 = visit(ctx.operacion(0));
+        Object op_2 = visit(ctx.operacion(1);
 
-        if(ctx.getChild(1).getText() == "+"){
-            Integer primerValor = (Integer) visit(ctx.operacion(0));
-            Integer segundoValor = (Integer) visit(ctx.operacion(1));
-
-            Integer suma = primerValor + segundoValor;
-
-            return suma;
-        }else if(ctx.getChild(1).getText() == "-"){
-            Integer primerValor = (Integer) visit(ctx.operacion(0));
-            Integer segundoValor = (Integer) visit(ctx.operacion(1));
-
-            Integer resta = primerValor + segundoValor;
-
-            return resta;
-        }else if(ctx.getChild(1).getText() == "*"){
-            Integer primerValor = (Integer) visit(ctx.operacion(0));
-            Integer segundoValor = (Integer) visit(ctx.operacion(1));
-
-            Integer mult = primerValor + segundoValor;
-
-            return mult;
-        }else if(ctx.getChild(0).getText() == "ULTIMAPOSICION"){
-            return visit(ctx.ultima_posicion());
-        }else{
-            Boolean var = AnasemListener.mapaVariables.containsKey(ctx.getText());
-            if(var){
-                return AnasemListener.mapaVariables.get(ctx.getText());
-            }else{
-                return Integer.valueOf(ctx.getText());
-            }
+        if(ctx.OP_SR().getText().equals("+")){
+            Integer int1 = (Integer) op_1;
+            Integer int2 = (Integer) op_2;
+            res=int1+int2;
+        }else {
+            Integer int1 = (Integer) op_1;
+            Integer int2 = (Integer) op_2;
+            res=int1-int2;
         }
+
+        return res;
+    }
+
+    @Override
+    public Object visitVisitOperacionMultiplicacion(Anasint.VisitOperacionMultiplicacionContext ctx) {
+        Integer res = null;
+        Object op_1 = visit(ctx.operacion(0));
+        Object op_2 = visit(ctx.operacion(1);
+
+        Integer int1 = (Integer) op_1;
+        Integer int2 = (Integer) op_2;
+        res=int1*int2;
+
+        return res;
+    }
+
+    @Override
+    public Object visitVisitEntero(Anasint.VisitEnteroContext ctx) {
+        Integer res=null;
+        res=Integer.parseInt(ctx.ENTERO().getText());
+        return res;
+    }
+
+    @Override
+    public Object visitVisitIdentificador(Anasint.VisitIdentificadorContext ctx) {
+        Integer res = null;
+        VariableP var = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR());
+        res=var.getValores().get(0);
+        return res;
+    }
+
+    @Override
+    public Object visitVisitUltimaPos(Anasint.VisitUltimaPosContext ctx) {
+        return super.visitVisitUltimaPos(ctx);
     }
 }

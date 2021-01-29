@@ -1,4 +1,4 @@
-// Generated from C:/Users/Fran/IdeaProjects/ProyectoEnero1/src\Anasint.g4 by ANTLR 4.8
+// Generated from C:/Users/carli/Proyecto PL Convocatoria/PLEnero/src\Anasint.g4 by ANTLR 4.9
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -57,15 +57,77 @@ public interface AnasintListener extends ParseTreeListener {
 	 */
 	void exitInstrucciones(Anasint.InstruccionesContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link Anasint#operacion}.
+	 * Enter a parse tree produced by the {@code VisitEntero}
+	 * labeled alternative in {@link Anasint#operacion}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperacion(Anasint.OperacionContext ctx);
+	void enterVisitEntero(Anasint.VisitEnteroContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link Anasint#operacion}.
+	 * Exit a parse tree produced by the {@code VisitEntero}
+	 * labeled alternative in {@link Anasint#operacion}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperacion(Anasint.OperacionContext ctx);
+	void exitVisitEntero(Anasint.VisitEnteroContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code VisitOperacionMultiplicacion}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterVisitOperacionMultiplicacion(Anasint.VisitOperacionMultiplicacionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code VisitOperacionMultiplicacion}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitVisitOperacionMultiplicacion(Anasint.VisitOperacionMultiplicacionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code VisitOperacionSumRest}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterVisitOperacionSumRest(Anasint.VisitOperacionSumRestContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code VisitOperacionSumRest}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitVisitOperacionSumRest(Anasint.VisitOperacionSumRestContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code VisitIdentificador}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterVisitIdentificador(Anasint.VisitIdentificadorContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code VisitIdentificador}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitVisitIdentificador(Anasint.VisitIdentificadorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code VisitAcceso}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterVisitAcceso(Anasint.VisitAccesoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code VisitAcceso}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitVisitAcceso(Anasint.VisitAccesoContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code VisitUltimaPos}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterVisitUltimaPos(Anasint.VisitUltimaPosContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code VisitUltimaPos}
+	 * labeled alternative in {@link Anasint#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitVisitUltimaPos(Anasint.VisitUltimaPosContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link Anasint#ultima_posicion}.
 	 * @param ctx the parse tree
@@ -167,15 +229,15 @@ public interface AnasintListener extends ParseTreeListener {
 	 */
 	void exitComparacion(Anasint.ComparacionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link Anasint#vacio}.
+	 * Enter a parse tree produced by {@link Anasint#vacia}.
 	 * @param ctx the parse tree
 	 */
-	void enterVacio(Anasint.VacioContext ctx);
+	void enterVacia(Anasint.VaciaContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link Anasint#vacio}.
+	 * Exit a parse tree produced by {@link Anasint#vacia}.
 	 * @param ctx the parse tree
 	 */
-	void exitVacio(Anasint.VacioContext ctx);
+	void exitVacia(Anasint.VaciaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link Anasint#iteracion}.
 	 * @param ctx the parse tree

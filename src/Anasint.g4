@@ -18,11 +18,12 @@ instrucciones:  (operacion PYC
                | ruptura PYC
                )*;
 
-operacion: operacion OP_SR (operacion)+
-         | operacion OP_MULT (operacion)+
-         | (ENTERO | IDENTIFICADOR)
-         | ultima_posicion
-         | acceso_secuencia
+operacion: operacion OP_SR (operacion)+         #VisitOperacionSumRest
+         | operacion OP_MULT (operacion)+       #VisitOperacionMultiplicacion
+         | ENTERO                               #VisitEntero
+         | IDENTIFICADOR                        #VisitIdentificador
+         | ultima_posicion                      #VisitUltimaPos
+         | acceso_secuencia                     #VisitAcceso
          ;
 
 ultima_posicion: ULTIMA_POSICION CA IDENTIFICADOR CC;
@@ -42,11 +43,11 @@ condicional: SI PA expr_bool PC ENTONCES instrucciones (SINO instrucciones)? FSI
 expr_bool: CIERTO
          | FALSO
          | comparacion
-         | vacio;
+         | vacia;
 
 comparacion: expr? COMPARADORES expr;
 
-vacio: VACIO CA IDENTIFICADOR CC;
+vacia: VACIA CA IDENTIFICADOR CC;
 
 iteracion: MIENTRAS PA expr_bool PC HACER instrucciones FMIENTRAS;
 
