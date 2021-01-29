@@ -174,4 +174,18 @@ public class AnasemListener extends AnasintBaseListener {
 //            }
 //        }
 //    }
+
+
+    @Override
+    public void exitUltima_posicion(Anasint.Ultima_posicionContext ctx) {
+        Integer res=null;
+        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR());
+        if(var.getTipo().equals(Ptype.ENTERO)){
+            System.out.println("ERROR, NO SE PUEDE COMPROBAR LA ULTIMA POSICION DE UN ENTERO");
+            System.exit(1);
+        }else if(var.getValores().isEmpty()){
+            System.out.println("ERROR, LA SECUENCIA ESTÁ VACÍA O ES INDEFINIDA");
+            System.exit(1);
+        }
+    }
 }

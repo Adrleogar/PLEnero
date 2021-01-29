@@ -226,6 +226,11 @@ public class Interprete extends AnasintBaseVisitor {
 
     @Override
     public Object visitVisitUltimaPos(Anasint.VisitUltimaPosContext ctx) {
-        return super.visitVisitUltimaPos(ctx);
+        Integer res=null;
+        VariableP var=AnasemListener.mapaVariables.get(ctx.ultima_posicion().IDENTIFICADOR());
+        res=var.getValores().get(var.getValores().size()-1);
+        return res;
     }
+
+    
 }
