@@ -23,5 +23,9 @@ public class Principal {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500,400);
         frame.setVisible(true);
+
+        //Test semántico
+
+        //Test intérprete
     }
 }

@@ -26,7 +26,7 @@ MIENTRAS: 'mientras';
 FMIENTRAS: 'fmientras';
 HACER: 'hacer';
 ULTIMA_POSICION: 'ultima_posicion';
-VACIA: 'VACIA';
+VACIA: 'vacia';
 
 COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=' | '&&' | '||' | '!' ;
 IGUAL: '=';
@@ -42,7 +42,8 @@ DPS: ':';
 
 PA: '(';
 PC: ')';
-RUPTURA : 'RUPTURA';
+RUPTURA : 'ruptura';
+MOSTRAR: 'mostrar';
 
 COMENTARIO_BLOQUE: '/' .? '*/' -> skip ;
 COMENTARIO_LINEA:'//' .*? FIN_LINEA -> skip ;

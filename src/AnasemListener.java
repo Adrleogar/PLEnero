@@ -60,7 +60,7 @@ public class AnasemListener extends AnasintBaseListener {
 
     @Override
     public void exitRuptura(Anasint.RupturaContext ctx) {
-        if(ctx.getParent().getRuleIndex()==15){
+        if(ctx.getParent().getRuleIndex()==17){
         } else if (esParentunMientras(ctx)){ //Aquí no sabemos si aún estamos dentro de un mientras
 
         }else {
@@ -196,5 +196,14 @@ public class AnasemListener extends AnasintBaseListener {
             System.out.println("ERROR, ES UN ENTERO Y NO SE PUEDE ACCEDER");
             System.exit(1);
         }
+    }
+
+    @Override
+    public void exitMostrar(Anasint.MostrarContext ctx) {
+        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR());
+        if(var.getTipo().equals(Ptype.ENTERO)){
+            System.out.println("ERROR, ES UN ENTERO Y NO SE PUEDE MOSTRAR");
+            System.exit(1);
+        }//Vamos a permitir que se muestren secuencias vacías, esto es una decisión de diseño
     }
 }

@@ -154,6 +154,12 @@ public interface AnasintVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIteracion(Anasint.IteracionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link Anasint#mostrar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMostrar(Anasint.MostrarContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link Anasint#ruptura}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

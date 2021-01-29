@@ -236,4 +236,5 @@ public class Interprete extends AnasintBaseVisitor {
     public Object visitVisitAcceso(Anasint.VisitAccesoContext ctx) {
         return visit(ctx.acceso_secuencia());
     }
+
 }

@@ -16,6 +16,7 @@ instrucciones:  (operacion PYC
                | condicional PYC
                | iteracion PYC
                | ruptura PYC
+               | mostrar PYC
                )*;
 
 operacion: operacion OP_SR (operacion)+         #VisitOperacionSumRest
@@ -29,7 +30,7 @@ operacion: operacion OP_SR (operacion)+         #VisitOperacionSumRest
 ultima_posicion: ULTIMA_POSICION CA IDENTIFICADOR CC;
 
 operaciones: operacion (COMA operacion)*; //Se hace esto para incluir operaciones separadas entre comas
-secuencia: CA operaciones CC;
+secuencia: PA operaciones PC;
 
 acceso_secuencia: IDENTIFICADOR CA operacion CC;
 
@@ -50,6 +51,8 @@ comparacion: expr? COMPARADORES expr;
 vacia: VACIA CA IDENTIFICADOR CC;
 
 iteracion: MIENTRAS PA expr_bool PC HACER instrucciones FMIENTRAS;
+
+mostrar: MOSTRAR PA IDENTIFICADOR PC;
 
 ruptura: RUPTURA;
 
