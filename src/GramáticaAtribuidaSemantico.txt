@@ -1,0 +1,134 @@
+sentencia: PROGRAMA variables SUBPROGRAMAS INSTRUCCIONES instrucciones EOF;
+
+variables: VARIABLES (declaraciones)*;
+
+tipo: NUM | SEQ PA NUM PC;
+
+declaraciones: IDENTIFICADOR (COMA IDENTIFICADOR)* DPS tipo PYC;
+
+
+    -----------------Gramática atribuida del objetivo 7-----------------
+            para i=0 i < IDENTIFICADOR.tamaño i++
+
+                Cadena id=IDENTIFICADOR(i).texto
+                Ptype tipo=nulo
+
+                si tipo.texto == 'NUM'
+                    tipo=Entero;
+
+                sino si tipo.texto == 'SEQ[NUM]'
+                    tipo=Seqnum;
+
+                sino
+                    Error:Tipo no valido
+
+                VariableP s=nueva VariableP(id,tipo)
+
+                almacenVariables.meter(s.nombre,s)
+    -----------------Gramática atribuida del objetivo 7-----------------
+
+instrucciones:  (operacion PYC
+               | asignacion PYC
+               | condicional PYC
+               | iteracion PYC
+               | ruptura PYC
+               | mostrar PYC
+               )*;
+
+operacion: operacion OP_SR (operacion)+         #VisitOperacionSumRest
+         | operacion OP_MULT (operacion)+       #VisitOperacionMultiplicacion
+         | ENTERO                               #VisitEntero
+         | IDENTIFICADOR                        #VisitIdentificador
+         | ultima_posicion                      #VisitUltimaPos
+         | acceso_secuencia                     #VisitAcceso
+         ;
+
+  -----------------Gramática atribuida del objetivo 1-----------------
+            var v = almacenVariables (IDENTIFICADOR)
+
+            si v.tipo == 'SEQNUM'
+                Error: No se puede operar con secuencias
+
+    -----------------Gramática atribuida del objetivo 1-----------------
+
+ultima_posicion: ULTIMA_POSICION CA IDENTIFICADOR CC;
+
+operaciones: operacion (COMA operacion)*; //Se hace esto para incluir operaciones separadas entre comas
+secuencia: PA operaciones PC;
+
+acceso_secuencia: IDENTIFICADOR CA operacion CC;
+
+expr: operacion | secuencia;
+exprs: expr (COMA expr)*;
+
+asignacion: IDENTIFICADOR (COMA IDENTIFICADOR)* IGUAL (exprs);
+    -----------------Gramática atribuida del objetivo 0,3 y 8-----------------
+            si tamaño IDENTIFICADOR != tamaño exprs
+                ERROR 1: Numero de variables y asignaciones a ambos lados erroneos
+
+            por cada IDENTIFICADOR i
+                Si el mapaVariables no contiene i
+                    Error 2: La variable no está definida
+               sino
+                    var v = almacenVariables(i)
+                    Si var v.tipo != tipo(expr(i))
+                        Error 3: Se estan asignando variables de distinto tipo
+
+    -----------------Gramática atribuida del objetivo 0,3 y 8-----------------
+condicional: SI PA expr_bool PC ENTONCES instrucciones (SINO instrucciones)? FSI;
+
+expr_bool: CIERTO
+         | FALSO
+         | comparacion
+         | vacia;
+
+comparacion: expr COMPARADORES expr;
+
+    -----------------Gramática atribuida del objetivo 2-----------------
+            var v1 = almacenVariables (expr(0))
+            var v2 = almacenVariables (expr(1))
+
+            si v1.tipo != v2.tipo
+                ERROR 1: No se pueden comparar dos tipos de variables distintons
+
+           sino si v1.tipo == 'SEQNUM'
+                ERROR 2: No se puede usar este comparador con secuencias
+
+           sino si v1.tipo == 'ENTERO'
+               si comparadores.texto == '&&' || comparadores.texto == '||'
+                   ERROR 3: No se puede usar ese comparador con enteros
+
+    -----------------Gramática atribuida del objetivo 2 y 5-----------------
+
+
+vacia: VACIA CA IDENTIFICADOR CC;
+
+    -----------------Gramática atribuida del objetivo 6-----------------
+            var v = almacenVariables (IDENTIFICADOR.texto)
+
+            si v.valores == nulo
+                ERROR 1: No se puede usar esta función en una variable indefinida
+
+           sino si v1.tipo == 'SEQNUM'
+                ERROR 2: No se puede usar este comparador con secuencias
+
+           sino si v.tipo == 'ENTERO'
+                ERROR 3: No se puede usar esta función en un entero
+
+    -----------------Gramática atribuida del objetivo 6-----------------
+
+iteracion: MIENTRAS PA expr_bool PC HACER instrucciones FMIENTRAS;
+
+mostrar: MOSTRAR PA IDENTIFICADOR PC;
+
+ruptura: RUPTURA;
+
+    -----------------Gramática atribuida del objetivo 4----------------
+
+            si padre == iteracion
+
+            sino  si padre == mientras
+
+           sino
+               ERROR: No es un mientras
+    -----------------Gramática atribuida del objetivo 4-----------------

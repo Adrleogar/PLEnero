@@ -23,13 +23,69 @@ Objetivo 8:
 Evaluar los condicionales TENIENDO EN CUENTA LA RUPTURA
 
 Objetivo 9:
-Evaluar el vacia
-
-Objetivo 10:
 Evaluar el mostrar
 
-Objetivo 11:
-Evaluar el ultima posicion
-
-Objetivo 12:
+Objetivo 10:
 Evaluar la secuencia para devolver una LISTA
+
+Decisión de diseño 1:
+Para conseguir este objetivo, hemos realizado un visitor 'visitOperaciones' el cual decidirá
+por sí mismo en qué caso estaremos. Una vez elegido el caso concreto de todos los tipos de
+operaciones que tenemos, tenemos un visitor para tratar cada caso. Hemos creado un visitor para
+cada tipo de operación (visitOperacionMultiplicacion, visitOperacionSumRest, visitEntero,
+visitIdentificador, visitUltimaPos, visitAcceso_Secuencia), por lo tanto haremos uso de todos estos.
+Cada caso tiene varias partes, y estos visitors creados evaluarán cada parte como corresponda (dependiendo
+de si este tiene operandos, si es simplemente un entero,...) para obtener el valor que solicitemos.
+
+Decisión de diseño 2:
+Para conseguir un correcto funcionamiento de este objetivo, haremos un visitor de Asignacion.
+Este primeramente comprobará cuántas asignaciones estamos realizando mediante el size del
+ctx del identificador. Luego, obtendremos todos los atributos de cada variable accediendo al
+almacen de variables y usando como clave su identificador. Finalmente, comprobaremos qué tipo de
+variable estamos tratando para poder cambiar correctamente su valor, utilizando el método setValores,
+y haciendo un uso correcto el contador usado (es decir, si estamos tratando la variable que se encuentra
+en el segundo lugar, para cambiar su valor cogeremos la expresión que se encuentra también en segundo lugar).
+
+Decisión de diseño 3:
+Para evaluar las comparaciones correctamente, crearemos un visitor de Comparacion. Sabemos de antemano que
+en nuestro lenguaje, una comparación siempre tiene una expresión a la izquierda y otra a la derecha. Evaluaremos
+cada expresión mediante un visitor para poder obtener su valor, y luego obtendremos el comparador para saber
+qué criterio tenemos que aplicar en la comparación de estas dos expresiones.
+
+Decisión de diseño 4:
+Realizaremos un visitor llamado 'visitUltima_posicion'. Este sacará el nombre del identificador que hemos
+pasado como parámetro a esta función, y mediante él obtendremos todos los atributos de la secuencia en
+cuestión. Una vez obtenidos todos los atributos, apuntaremos a la parte de sus valores. Si esta lista de
+valores está vacía, pues no devolveremos nada. Si tiene valores, devolveremos el valor que se encuentra
+en último lugar.
+
+Decisión de diseño 5:
+Para resolver la iteración crearemos un método Hay Ruptura que irá visitando cada una de las instrucciones
+que hay dentro de cada iteración en busca de una ruptura, una vez se encuentre una instrucción ruptura
+como parte del set de instrucciones de la iteración dejaremos de evaluar las instrucciones siguientes.
+
+Decisión de diseño 6:
+Para evaluar si una secuencia está vacía, accederemos a los atributos de la secuencia en cuestión usando
+el identificador de esta como clave. Luego, usaremos el método isEmpty para comprobar si está vacía.
+Si lo está, devuelve un boolean true, si no devuelve un boolean con valor false.
+
+Decisión de diseño 7:
+Para conseguir este objetivo, hemos hecho un visitor de expr_bool. Dentro de este, si lo que tenemos
+en nuestro contexto es una 'T' devolvemos true, si es una 'F' devolvemos false. Si nuestro primer
+hijo contiene la palabra vacia, visitaremos el visit vacia que hemos nombrado anteriormente. Y si nada
+de esto se cumple, estaremos en una comparación, y por tanto usaremos su visitor.
+
+Decisión de diseño 8:
+Para evaluar los condicionales, lo que haremos será evaluar todas las instrucciones en caso de que
+la evaluacion de la expresion booleana de condicion sea positiva, en caso de que alguna instruccion
+sea ruptura evaluaremos todas hasta que esta ruptura ocurra, en caso de que se saldrá del ultimo bloque
+accedido.
+
+Decisión de diseño 9:
+Para mostrar por pantalla, hemos creado el cuál accederá a todos los atributos de la variable que
+queramos. Luego, accederá a la lista de valores mediante un getValores de Java, e imprimirá por
+pantalla en nombre de la variable seguido de sus valores.
+
+Decisión de diseño 10:
+Para realizar el método lo que hemos hecho ha sido tomar la lista mediante un visit de operaciones
+y devolverla

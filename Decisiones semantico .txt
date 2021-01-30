@@ -18,7 +18,7 @@ LISTO en el primer if de exitAsignacion
 Objetivo 4:
 La instrucción ruptura sólo puede estar dentro de un mientras,la
 un si o un sino.
-LISTO? Preguntar a Adrià dónde está y eso
+LISTO
 
 Objetivo 5:
 Los comparadores deberán tener coherencia lógica

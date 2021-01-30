@@ -18,7 +18,7 @@ public class Interprete extends AnasintBaseVisitor {
     9. Evaluar el vacia                                         Hecho
     10. Evaluar el mostrar                                      Hecho
     11. Evaluar el ultima posicion                              Hecho
-    12. Evaluar la secuencia para devolver una LISTA
+    12. Evaluar la secuencia para devolver una LISTA            HACER ADRIÀ
     13.
 
     *. Visitar CADA sentencia dedicada en el Anasint. (Puede crear más objetivos)
@@ -30,6 +30,13 @@ public class Interprete extends AnasintBaseVisitor {
     {funcion f (visita vacío) devuelve var}
     Boolean var = vacíoFuncionLlamada(IDENTIFICADOR)?
      */
+
+    @Override
+    public Object visitSecuencia(Anasint.SecuenciaContext ctx) {
+        List<Integer> res = (List<Integer>) visit(ctx.operaciones());
+
+        return res;
+    }
 
     @Override
     public Boolean visitVacia(Anasint.VaciaContext ctx) {
@@ -194,14 +201,12 @@ public class Interprete extends AnasintBaseVisitor {
     }
 
     @Override
-    public Integer visitOperaciones(Anasint.OperacionesContext ctx) {
-
+    public List<Integer> visitOperaciones(Anasint.OperacionesContext ctx) {
+        List<Integer> res = new ArrayList<>();
         for(int i = 0; i < ctx.operacion().size(); i++){
-
-            visit(ctx.operacion(i));
+            res.add((Integer) visit(ctx.operacion(i)));
         }
-
-        return 1;
+        return res;
     }
 
     @Override

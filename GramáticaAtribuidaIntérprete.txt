@@ -1,0 +1,65 @@
+parser grammar Anasint;
+options{
+    tokenVocab=Analex;
+}
+
+sentencia: PROGRAMA variables SUBPROGRAMAS INSTRUCCIONES instrucciones EOF;
+
+variables: VARIABLES (declaraciones)*;
+
+tipo: NUM | SEQ PA NUM PC;
+
+declaraciones: IDENTIFICADOR (COMA IDENTIFICADOR)* DPS tipo PYC;
+
+instrucciones:  (operacion PYC
+               | asignacion PYC
+               | condicional PYC
+               | iteracion PYC
+               | ruptura PYC
+               | mostrar PYC
+               )*;
+
+operacion: operacion OP_SR (operacion)+         #VisitOperacionSumRest  { visitSecuenciaNum (ctx) =  Por cada operacion x visita la operacion x
+                                                                          Si operacion OP_SR operacion = "+"
+                                                                          operacion + operacion
+
+                                                                          Si operacion OP_SR operacion = "-"
+                                                                          operacion - operacion   }
+         | operacion OP_MULT (operacion)+       #VisitOperacionMultiplicacion   { VisitOperacionMultiplicacion (ctx) =  Por cada operacion x visita la operacion x
+                                                                                  Si operacion OP_MULT operacion = "*"
+                                                                                  operacion * operacion  }
+
+         | ENTERO                               #VisitEntero                    { VisitEntero (ctx) = ENTERO }
+         | IDENTIFICADOR                        #VisitIdentificador             { VisitIdentificador (ctx) = IDENTIFICADOR }
+         | ultima_posicion                      #VisitUltimaPos                 { VisitUltimaPos (ctx) = mapaVariables.get(ident) devolvemos mapaVariables.get(mapaVariables.size-1)} ;
+         | acceso_secuencia                     #VisitAcceso                    { VisitAcceso (ctx) = mapaVariables.get(acceso) devolvemos mapaVariables.get(acceso)} ;
+         ;
+
+ultima_posicion: ULTIMA_POSICION CA IDENTIFICADOR CC; { ULTIMA_POSICION }
+
+operaciones: operacion (COMA operacion)*; //Se hace esto para incluir operaciones separadas entre comas
+secuencia: PA operaciones PC;
+
+acceso_secuencia: IDENTIFICADOR CA operacion CC;    { Por cada operacion x visitamos el operacion x }
+
+expr: operacion | secuencia;
+exprs: expr (COMA expr)*;
+
+asignacion: IDENTIFICADOR (COMA IDENTIFICADOR)* IGUAL (exprs);  { Por cada expr x visitamos el expr x }
+
+condicional: SI PA expr_bool PC ENTONCES instrucciones (SINO instrucciones)? FSI; { Por cada expr_bool x visitamos expr_bool
+                                                                                    Por cada instruccion x visitamos instrucciones x  } //NO seguro
+
+expr_bool: CIERTO       { CIERTO }
+         | FALSO        { FALSO }
+         | comparacion  { Por cada comparacion x visitamos comparacion x }
+         | vacia;       { Por cada vacia x visitamos vacia x }
+
+comparacion: expr COMPARADORES expr;    { Por cada expr x visitamos expr x }
+
+vacia: VACIA CA IDENTIFICADOR CC;   { l = mapaVariables.get(IDENTIFICADOR) devolvemos l.isEmpty}} ;
+
+iteracion: MIENTRAS PA expr_bool PC HACER instrucciones FMIENTRAS; { Por cada expr_bool x visitamos expr_bool
+                                                                     Por cada instruccion x visitamos instruccion x  }
+
+mostrar: MOSTRAR PA IDENTIFICADOR PC;

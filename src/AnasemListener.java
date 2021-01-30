@@ -48,7 +48,7 @@ public class AnasemListener extends AnasintBaseListener {
             String s = ctx.IDENTIFICADOR(i).getText();
             VariableP var = mapaVariables.get(s);
             if (mapaVariables.get(s).getTipo().equals(Ptype.ENTERO)&&ctx.exprs().expr(i).getRuleIndex()==5){
-                //Consultar esto a Adrià
+
             }else if(mapaVariables.get(s).getTipo().equals(Ptype.SEQNUM)&&ctx.exprs().expr(i).getRuleIndex()==8){
 
             }else{
