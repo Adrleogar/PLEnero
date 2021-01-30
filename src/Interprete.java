@@ -165,17 +165,27 @@ public class Interprete extends AnasintBaseVisitor {
     @Override
     public Object visitRuptura(Anasint.RupturaContext ctx) {
 
-        for(int i=0; )
+        return 1;
     }
 
     @Override
     public Object visitCondicional(Anasint.CondicionalContext ctx) {
         if((Boolean) visit(ctx.expr_bool())){
-            visit(ctx.instrucciones(0));
+            for(int i  = 0; i<ctx.instrucciones(0).children.size(); i++){
+                visit(ctx.instrucciones(0).getChild(i));
+                if(visit(ctx.instrucciones(0).getChild(i)).equals(1) ){
+                    break;
+                }
+            }
         } else if(ctx.instrucciones().size()==2){
-            visit(ctx.instrucciones(1));
+            for(int i  = 0; i<ctx.instrucciones(1).children.size(); i++){
+                visit(ctx.instrucciones(1).getChild(i));
+                if(visit(ctx.instrucciones(1).getChild(i)).equals(1) ){
+                    break;
+                }
+            }
         }
-        return 1;
+        return 0;
     }
 
     @Override
