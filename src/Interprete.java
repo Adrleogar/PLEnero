@@ -7,14 +7,19 @@ import java.util.List;
 public class Interprete extends AnasintBaseVisitor {
 
     /*
-    1. Sacar el valor de TODAS las operaciones HECHO
-    2. Añadir cada modificacion de cada variable al almacén de variables DONE
-    3. Evaluar las comparaciones HECHO
-    4. Sacar la última posicion HECHO
-    5. Realizar las iteraciones TENIENDO EN CUENTA LA RUPTURA HECHO
-    6. Evaluar si una secuencia está vacía o no HECHO
-    7. Evaluar cada expresión Booleana HECHO
-    8. Evaluar los condicionales HECHO
+    1. Sacar el valor de TODAS las operaciones                  Hecho
+    2. Añadir cada modificacion de cada variable al almacén de variables WARNING
+    3. Evaluar las comparaciones                                Hecho
+    4. Sacar la última posicion                                 Hecho
+    5. Realizar las iteraciones TENIENDO EN CUENTA LA RUPTURA   Hecho
+    6. Evaluar si una secuencia está vacía o no                 Hecho
+    7. Evaluar cada expresión Booleana                          Hecho
+    8. Evaluar los condicionales TENIENDO EN CUENTA LA RUPTURA  Hecho
+    9. Evaluar el vacia                                         Hecho
+    10. Evaluar el mostrar                                      Hecho
+    11. Evaluar el ultima posicion                              Hecho
+    12. Evaluar la secuencia para devolver una LISTA
+    13.
 
     *. Visitar CADA sentencia dedicada en el Anasint. (Puede crear más objetivos)
 
@@ -202,7 +207,8 @@ public class Interprete extends AnasintBaseVisitor {
     @Override
     public Object visitAcceso_secuencia(Anasint.Acceso_secuenciaContext ctx) {
 
-        if((int)visit(ctx.operacion()) > Integer.valueOf(AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText()).getValores().size())){
+        if((int)visit(ctx.operacion()) > Integer.valueOf(AnasemListener.mapaVariables.get(
+                ctx.IDENTIFICADOR().getText()).getValores().size())){
             System.out.println("ERROR");
             System.exit(1);
         }else{

@@ -1,0 +1,35 @@
+Objetivo 1:
+Sacar el valor de TODAS las operaciones
+
+Objetivo 2:
+Añadir cada modificacion de cada variable al almacén de variables
+
+Objetivo 3:
+Evaluar las comparaciones
+
+Objetivo 4:
+Sacar la última posicion
+
+Objetivo 5:
+Realizar las iteraciones TENIENDO EN CUENTA LA RUPTURA
+
+Objetivo 6:
+Evaluar si una secuencia está vacía o no
+
+Objetivo 7:
+Evaluar cada expresión Booleana
+
+Objetivo 8:
+Evaluar los condicionales TENIENDO EN CUENTA LA RUPTURA
+
+Objetivo 9:
+Evaluar el vacia
+
+Objetivo 10:
+Evaluar el mostrar
+
+Objetivo 11:
+Evaluar el ultima posicion
+
+Objetivo 12:
+Evaluar la secuencia para devolver una LISTA
