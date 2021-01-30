@@ -8,7 +8,7 @@ public class Interprete extends AnasintBaseVisitor {
 
     /*
     1. Sacar el valor de TODAS las operaciones HECHO
-    2. Añadir cada modificacion de cada variable al almacén de variables FALTA ESTE
+    2. Añadir cada modificacion de cada variable al almacén de variables DONE
     3. Evaluar las comparaciones HECHO
     4. Sacar la última posicion HECHO
     5. Realizar las iteraciones TENIENDO EN CUENTA LA RUPTURA HECHO
@@ -48,13 +48,14 @@ public class Interprete extends AnasintBaseVisitor {
             if(var.getTipo().equals(Ptype.ENTERO)){
                 var.setValores((List<Integer>) ctx.exprs().expr().get(i));
                 AnasemListener.mapaVariables.put(var.nombre, var);
-            } else if(var.getTipo().equals(Ptype.SEQNUM){
-                for(int j=0; j<var.getValores().size(); j++){
-                    
+            } else if(var.getTipo().equals(Ptype.SEQNUM)){
+                for(int j=0; j<ctx.exprs().expr().size(); j++){
+                    var.setValores((List<Integer>) ctx.exprs().expr().get(i));
+                    AnasemListener.mapaVariables.put(var.nombre, var);
                 }
             }
         }
-
+        return "";
     }
 
     @Override
@@ -65,7 +66,7 @@ public class Interprete extends AnasintBaseVisitor {
             res = true;
         } else if (ctx.getText().equals("F")) {
             res = false;
-        } else if (ctx.getChild(0).getText().equals("VACIO")) {
+        } else if (ctx.getChild(0).getText().equals("vacia")) {
             res = (Boolean) visit(ctx.vacia());
         } else {
             res = (Boolean) visit(ctx.comparacion());
@@ -99,7 +100,7 @@ public class Interprete extends AnasintBaseVisitor {
         } else if (com == "<=") {
             Integer int1 = (Integer) expresion_1;
             Integer int2 = (Integer) expresion_2;
-            res = int1 >= int2;
+            res = int1 <= int2;
         } else if (com == "&&") {
             Boolean bool1 = (Boolean) expresion_1;
             Boolean bool2 = (Boolean) expresion_2;
@@ -107,7 +108,7 @@ public class Interprete extends AnasintBaseVisitor {
         } else if (com == "||") {
             Boolean bool1 = (Boolean) expresion_1;
             Boolean bool2 = (Boolean) expresion_2;
-            res = bool1 && bool2;
+            res = bool1 || bool2;
         } else if (com == "!") {
             Boolean bool1 = (Boolean) expresion_1;
             res = !bool1;
@@ -188,7 +189,7 @@ public class Interprete extends AnasintBaseVisitor {
         if((int)visit(ctx.operacion()) > Integer.valueOf(AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText()).getValores().size())){
             System.out.println("ERROR");
             System.exit(1);
-        }else if(visit(ctx.)){
+        }else{
             VariableP v = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText());
 
             return v.getValores().get((int)visit(ctx.operacion()));
@@ -200,7 +201,7 @@ public class Interprete extends AnasintBaseVisitor {
     public Object visitVisitOperacionSumRest(Anasint.VisitOperacionSumRestContext ctx) {
         Integer res = null;
         Object op_1 = visit(ctx.operacion(0));
-        Object op_2 = visit(ctx.operacion(1);
+        Object op_2 = visit(ctx.operacion(1));
 
         if(ctx.OP_SR().getText().equals("+")){
             Integer int1 = (Integer) op_1;
@@ -219,7 +220,7 @@ public class Interprete extends AnasintBaseVisitor {
     public Object visitVisitOperacionMultiplicacion(Anasint.VisitOperacionMultiplicacionContext ctx) {
         Integer res = null;
         Object op_1 = visit(ctx.operacion(0));
-        Object op_2 = visit(ctx.operacion(1);
+        Object op_2 = visit(ctx.operacion(1));
 
         Integer int1 = (Integer) op_1;
         Integer int2 = (Integer) op_2;
