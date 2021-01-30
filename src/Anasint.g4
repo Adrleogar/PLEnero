@@ -34,8 +34,8 @@ secuencia: PA operaciones PC;
 
 acceso_secuencia: IDENTIFICADOR CA operacion CC;
 
-expr: operacion | secuencia;            //X, Y, Z= 1, 2, 3;
-exprs: expr (COMA expr)*;               //Y[3] = 1; ESTO NO LO PERMITIMOS
+expr: operacion | secuencia;
+exprs: expr (COMA expr)*;
 
 asignacion: IDENTIFICADOR (COMA IDENTIFICADOR)* IGUAL (exprs);
 

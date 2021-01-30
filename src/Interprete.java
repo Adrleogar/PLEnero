@@ -163,6 +163,12 @@ public class Interprete extends AnasintBaseVisitor {
     }
 
     @Override
+    public Object visitRuptura(Anasint.RupturaContext ctx) {
+
+        for(int i=0; )
+    }
+
+    @Override
     public Object visitCondicional(Anasint.CondicionalContext ctx) {
         if((Boolean) visit(ctx.expr_bool())){
             visit(ctx.instrucciones(0));
