@@ -1,15 +1,19 @@
 Objetivo 0:
-No tiene sentido igualar dos tipos de variables distintas; LISTO exitAsignacion
+No tiene sentido igualar dos tipos de variables distintas;
+LISTO??? Misma duda que objetivo 10, creo que es el mismo objetivo, exitAsignacion
 
 Objetivo 1:
-No tiene sentido operar con dos tipos de variables distintas; LISTO exitOperacion
+No tiene sentido operar con dos tipos de variables distintas;
+LISTO, lo tenemos en enterVisitIdentificador
 
 Objetivo 2:
-No tiene sentido comparar dos tipos de variables distintos; LISTO exitExpr_bool
+No tiene sentido comparar dos tipos de variables distintos;
+LISTO, lo tenemos en exitComparacion
 
 Objetivo 3:
 Cuando se realiza una asignación múltiple, a ambos lados
-del igual tiene que ocurrir el mismo número de operaciones/expresiones.LISTO exitAsignacion
+del igual tiene que ocurrir el mismo número de operaciones/expresiones.
+LISTO en el primer if de exitAsignacion
 
 Objetivo 4:
 La instrucción ruptura sólo puede estar dentro de una iteración mientras LISTO exitRuptura   O UN SI O UN SINO
@@ -18,24 +22,21 @@ Objetivo 5:
 Los comparadores deberán tener coherencia lógica LISTO enterExpr_bool último
 
 Objetivo 6:
-<<<<<<< Updated upstream
 Comprobar si es una secuencia y si existe FUNCION VACIO LISTO exitExpr_bool
-=======
-Comprobar si es una secuencia y si existe LISTO
->>>>>>> Stashed changes
 
 Objetivo 7:
 No se podrá utilizar tipos que no existan en el lenguaje P  LISTO exitDeclaraciones
 
 Objetivo 8:
-No se podrán asignar variables que no han sido previamente definidas exitAsignacion
+No se podrán asignar variables que no han sido previamente definidas
+LISTO En el primer if del primer for de exitAsignacion
 
 Objetivo 9:
 No se podrán utilizar variables que no han sido previamente definidas
 
 Objetivo 10:
 No se puede asignar una variable de tipo ENTERO a una variable de tipo SEQ, y viceversa LISTO
-exitAsignacion
+LISTO??? Creo que no funciona con los ruleindex, exitAsignacion
 
 Decision de diseño 1:
 El objetivo 0 requiere la creación de un almacén de variables

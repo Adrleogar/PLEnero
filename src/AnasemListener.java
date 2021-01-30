@@ -27,7 +27,7 @@ public class AnasemListener extends AnasintBaseListener {
                 System.out.println("ERROR, TIPO NO VÁLIDO");
                 System.exit(1);
             }
-            VariableP s = new VariableP(id, tipo);  //Esta sería nuestra lista de variables (almacen)
+            VariableP s = new VariableP(id, tipo);  //Esta sería nuestra lista de variables (almacén)
             mapaVariables.put(s.nombre,s);
 
         }
@@ -36,7 +36,7 @@ public class AnasemListener extends AnasintBaseListener {
     @Override
     public void exitAsignacion(Anasint.AsignacionContext ctx) {
         if(ctx.IDENTIFICADOR().size()!= ctx.exprs().expr().size()){
-            System.out.println("ERROR");
+            System.out.println("ERROR, EL NÚMERO DE VARIABLES Y DE ASIGNACIONES A AMBOS LADOS ES DISTINTO");
             System.exit(1);
         }
 
@@ -48,7 +48,7 @@ public class AnasemListener extends AnasintBaseListener {
             String s = ctx.IDENTIFICADOR(i).getText();
             VariableP var = mapaVariables.get(s);
             if (mapaVariables.get(s).getTipo().equals(Ptype.ENTERO)&&ctx.exprs().expr(i).getRuleIndex()==5){
-
+                //Consultar esto a Adrià
             }else if(mapaVariables.get(s).getTipo().equals(Ptype.SEQNUM)&&ctx.exprs().expr(i).getRuleIndex()==8){
 
             }else{
@@ -138,6 +138,38 @@ public class AnasemListener extends AnasintBaseListener {
 //        }
     //}
 
+    @Override
+    public void enterVisitIdentificador(Anasint.VisitIdentificadorContext ctx) {
+        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR().getText());
+
+        if(var.getTipo().equals(Ptype.SEQNUM)){
+            System.out.println("ERROR, NO SE PUEDE OPERAR CON SECUENCIAS");
+            System.exit(1);
+        }
+    }
+
+    @Override
+    public void exitComparacion(Anasint.ComparacionContext ctx) {
+        if(ctx.expr().size()==2){
+            VariableP var=mapaVariables.get(ctx.expr(0).getText());
+            VariableP var1=mapaVariables.get(ctx.expr(1).getText());
+
+            if(var.getTipo() != var1.getTipo()){
+                System.out.println("ERROR, NO SE PUEDEN COMPARAR DOS TIPOS DE VARIABLES DISTINTOS");
+                System.exit(1);
+            }else if(var.getTipo().equals(Ptype.SEQNUM)){
+                if(!ctx.COMPARADORES().getText().equals("==") || !ctx.COMPARADORES().getText().equals("!=")){
+                    System.out.println("ERROR, NO SE PUEDE ESE COMPARADOR CON SECUENCIAS");
+                    System.exit(1);
+                }
+            }
+        }
+    }
+
+    /* @Override
+    public void exitVisitOperacionSumRest(Anasint.VisitOperacionSumRestContext ctx) {
+        if(ctx.operacion().size())
+    } */
 
 
 //    @Override
