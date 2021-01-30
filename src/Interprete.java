@@ -30,7 +30,7 @@ public class Interprete extends AnasintBaseVisitor {
     public Boolean visitVacia(Anasint.VaciaContext ctx) {
         Boolean res = false;
         VariableP var = AnasemListener.mapaVariables.get(ctx.IDENTIFICADOR().getText());
-        if (var.Valores.isEmpty()) {
+        if (var.getValores().isEmpty()) {
             res = true;
         }
         return res;

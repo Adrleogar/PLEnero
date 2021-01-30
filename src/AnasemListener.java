@@ -74,7 +74,9 @@ public class AnasemListener extends AnasintBaseListener {
 
         if(ctx.getParent().getRuleIndex()==0){ //Volvemos hasta la sentencia, si en el camino
             res=false;                         //no hemos encontrado ningún While nos devuelve false
-        } else if(ctx.getParent().getRuleIndex()==15){
+        } else if(ctx.getParent().getRuleIndex()==15
+                ||ctx.getParent().getRuleIndex()==17
+                ||ctx.getParent().getRuleIndex()==19){
             res=true; //Aquí nos hemos encontrado un bucle While por el camino y nos devuelve un true
         } else {
             res=esParentunMientras(ctx.getParent());
@@ -149,8 +151,22 @@ public class AnasemListener extends AnasintBaseListener {
     }
 
     @Override
+    public void exitVacia(Anasint.VaciaContext ctx) {
+        VariableP var=mapaVariables.get(ctx.IDENTIFICADOR().getText());
+
+        if(var.getValores() == null) {
+            System.out.println("ERROR, NO SE PUEDE USAR ESTA FUNCIÓN EN UNA VARIABLE INDEFINIDA");
+            System.exit(1);
+        }else if(var.getTipo().equals(Ptype.ENTERO)){
+            System.out.println("ERROR, NO SE PUEDE USAR ESTA FUNCIÓN EN UN ENTERO");
+            System.exit(1);
+        }
+
+    }
+
+
+    @Override
     public void exitComparacion(Anasint.ComparacionContext ctx) {
-        if(ctx.expr().size()==2){
             VariableP var=mapaVariables.get(ctx.expr(0).getText());
             VariableP var1=mapaVariables.get(ctx.expr(1).getText());
 
@@ -159,12 +175,16 @@ public class AnasemListener extends AnasintBaseListener {
                 System.exit(1);
             }else if(var.getTipo().equals(Ptype.SEQNUM)){
                 if(!ctx.COMPARADORES().getText().equals("==") || !ctx.COMPARADORES().getText().equals("!=")){
-                    System.out.println("ERROR, NO SE PUEDE ESE COMPARADOR CON SECUENCIAS");
+                    System.out.println("ERROR, NO SE PUEDE USAR ESE COMPARADOR CON SECUENCIAS");
+                    System.exit(1);
+                }
+            }else if(var.getTipo().equals(Ptype.ENTERO)){
+                if(ctx.COMPARADORES().getText().equals("&&") || ctx.COMPARADORES().getText().equals("||")){
+                    System.out.println("ERROR, NO SE PUEDE USAR ESE COMPARADOR CON ENTEROS");
                     System.exit(1);
                 }
             }
         }
-    }
 
     /* @Override
     public void exitVisitOperacionSumRest(Anasint.VisitOperacionSumRestContext ctx) {

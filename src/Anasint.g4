@@ -46,7 +46,7 @@ expr_bool: CIERTO
          | comparacion
          | vacia;
 
-comparacion: expr? COMPARADORES expr;
+comparacion: expr COMPARADORES expr;
 
 vacia: VACIA CA IDENTIFICADOR CC;
 

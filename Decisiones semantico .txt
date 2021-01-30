@@ -1,6 +1,6 @@
 Objetivo 0:
 No tiene sentido igualar dos tipos de variables distintas;
-LISTO??? Misma duda que objetivo 10, creo que es el mismo objetivo, exitAsignacion
+LISTO en exitAsignacion
 
 Objetivo 1:
 No tiene sentido operar con dos tipos de variables distintas;
@@ -11,33 +11,123 @@ No tiene sentido comparar dos tipos de variables distintos;
 LISTO, lo tenemos en exitComparacion
 
 Objetivo 3:
-Cuando se realiza una asignación múltiple, a ambos lados
-del igual tiene que ocurrir el mismo número de operaciones/expresiones.
+Cuando se realiza una asignación múltiple a ambos lados
+del igual, tiene que ocurrir el mismo número de operaciones/expresiones.
 LISTO en el primer if de exitAsignacion
 
 Objetivo 4:
-La instrucción ruptura sólo puede estar dentro de una iteración mientras LISTO exitRuptura   O UN SI O UN SINO
+La instrucción ruptura sólo puede estar dentro de un mientras,la
+un si o un sino.
+LISTO? Preguntar a Adrià dónde está y eso
 
 Objetivo 5:
-Los comparadores deberán tener coherencia lógica LISTO enterExpr_bool último
+Los comparadores deberán tener coherencia lógica
+LISTO en exitComparacion
 
 Objetivo 6:
-Comprobar si es una secuencia y si existe FUNCION VACIO LISTO exitExpr_bool
+Comprobar si es una secuencia y si existe FUNCION VACIA
+LISTO en exitVacia
 
 Objetivo 7:
-No se podrá utilizar tipos que no existan en el lenguaje P  LISTO exitDeclaraciones
+No se podrá utilizar tipos que no existan en el lenguaje P
+LISTO en exitDeclaraciones
 
 Objetivo 8:
 No se podrán asignar variables que no han sido previamente definidas
 LISTO En el primer if del primer for de exitAsignacion
 
-Objetivo 9:
-No se podrán utilizar variables que no han sido previamente definidas
-
-Objetivo 10:
-No se puede asignar una variable de tipo ENTERO a una variable de tipo SEQ, y viceversa LISTO
-LISTO??? Creo que no funciona con los ruleindex, exitAsignacion
-
 Decision de diseño 1:
-El objetivo 0 requiere la creación de un almacén de variables
+Para la correcta resolución del Objetivo 0 utilizaremos un almacen de Variables,
+puesto que ANTLR funciona sobre el lenguaje de programación Java utilizaremos el
+tipo MAP<key,value> que nos permitirá almacenar en un diccionario cada variable
+siendo estas indexadas por el nombre que tienen.
+
+Esto significa que tendremos que crear tambien el tipo variableP, esta será un tipo
+de Java, tendrá 3 componentes: Nombre, Lista de valores y tipo de variable. El tipo
+de variable se implementará usando un Enumerado con 2 posibilidades, siendo estas
+numero y secuencia numérica sucesivamente.
+
+Finalmente teniendo el almacen de variables (el cual utilizaremos en otras situaciones
+pero se dará por entendido de aquí en adelante) sacaremos cada Variable llamada por el
+IDENTIFICADOR específico y conseguiremos su tipo aplicando este mismo. Si las 2 variables
+o expresiones resultan tener un tipo distinto esto no tendrá coherencia aritmética y
+saltará un error.
 TERMINADO
+
+Decisión de diseño 2:
+Para resolver el Objetivo 1 lo que hemos hecho ha sido obtener del almacén de variables hecho
+en la decisión de diseño número 1, la VariableP, y comprobando en un bloque if de java
+el tipo de esa variable, si es un tipo SEQ(NUM), saltará un mensaje de error que nos diga
+que no se pueden operar con Secuencias y el programa dejará de ejecutarse.
+
+Decisión de diseño 3:
+Para la correcta resolución del objetivo 2, lo que hemos planteado ha sido sacar las
+expresiones a cada uno de los lados y compararlas de manera que si las dos son distintas
+(Esto quiere decir que una sea entera y la otra secuencia), se nos imprima un mensaje de
+error que nos diga que no se pueden comparar dos tipos distintos y el programa dejará de
+ejecutarse.
+
+Si efectivamente los dos tipos son iguales, comprobaremos mediante otro bloque if de java
+si las dos expresiones son de tipo Seq.Si lo son comprobaremos si los comparadores que utilizamos
+sean ('==') o ('!='), ya que son los únicos comparadores que soportará nuestro
+lenguaje en el tipo Secuencia y por tanto si se utiliza otro cualquiera nos imprimirá
+un mensaje de error y el programa dejará de ejecutarse.
+
+Por último, considerando el caso de que se trate de un entero si o si comprobaremos que los comparadores
+NO sean ('&&') o ('||'), ya que nuestro lenguaje tampoco lo soporta para el tipo entero y por tanto
+si se utiliza otro cualquiera nos imprimirá un mensaje de error y el programa dejará de ejecutarse.
+
+Decisión de diseño 4:
+Para resolver el objetivo 3, lo que hemos hecho ha sido comprobar mediante un bloque if de java
+si el número de variables y asignaciones a ambos lados del igual son iguales, en caso de que no
+lo sean nos imprimirá un mensaje de error y el programa dejará de ejecutarse.
+
+Después hacemos un bucle for, y en un bloque if comprobamos si el identificador NO está en el mapa
+si no está, quiere decir que la variable no está definida y por tanto nos imprimirá un mensaje
+de error y el programa dejará de ejecutarse.
+
+En el caso contrario, obtenemos la variable del almacén de variables y comprobamos si la variable
+es entera y una operación, sino comprobamos si es una variable secuencia y comprobamos el código
+para saber si se trata efectivamente de una secuencia.
+
+En el caso contrario a los nombrados anteriormente, estaríamos asignando variables de distinto
+tipo y por tanto nos imprimirá un mensaje de error y el programa dejará de ejecutarse.
+
+Decision de diseño 5:
+
+Decisión de diseño 6:
+El objetivo 5 se resuelve en el mismo método de la decisión de diseño 3, ya que definimos la coherencia lógica
+como los operadores lógicos que nuestro lenguaje soporta para el tipo entero y el tipo secuencia.
+
+Dicho de otra forma, un entero será capaz de utilizar cualquier comparador excepto && y ||,
+mientras que el tipo secuencia solamente podrá utilizar el == y el !=.
+
+Importante comentar que hemos decidido desestimar el uso del operador lógico NOT ('!') ya que
+a nivel de útilidad real no tenía mucho sentido en nuestro lenguaje.
+
+Decisión de diseño 7:
+Para resolver el objetivo 6 lo que hemos hecho ha sido obtener la VariableP del almacén de variables
+Y mediante un bloque if, comprobamos si el tipo de la variable es entero, en ese caso
+nos imprimirá un mensaje de error y el programa dejará de ejecutarse ya que el vacia está
+hecho sólo para secuencias.
+
+En caso de ser una secuencia comprobamos si esa secuencia no está inicializada (Esto quiere decir
+que sea null) y en ese caso nos imprimirá un mensaje de error y el programa dejará de ejecutarse.
+
+Decisión de diseño 8:
+Para resolver el objetivo 7, lo que hemos hecho es recorrer todos los identificadores con un bucle
+for, guardando cada uno en una variable auxiliar y comprobando mediante un bloque if en java
+si es entero. Si lo es guardamos el tipo en una variable auxiliar Ptype.
+
+En caso de que no sea entero, volvemos a comprobar mediante un bloque if si se trata de una
+secuencia numérica. Si lo es guardamos el tipo en la variable auxiliar de nuevo.
+
+Si no es ninguna de las dos nos imprimirá un mensaje de error y el programa
+dejará de ejecutarse.
+
+Por último crearemos una variable auxiliar VariableP que será la que metamos en el almacén
+de variables.
+
+Decisión de diseño 9:
+Esta decisión de diseño está resuelta en la decisión de diseño 4, ya que con el primer bloque if
+de dentro del bucle for conseguimos comprobar si la variable está previamente definida

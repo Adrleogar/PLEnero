@@ -28,7 +28,7 @@ HACER: 'hacer';
 ULTIMA_POSICION: 'ultima_posicion';
 VACIA: 'vacia';
 
-COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=' | '&&' | '||' | '!' ;
+COMPARADORES: '<' | '>' | '>=' | '<=' | '==' | '!=' | '&&' | '||'; //Recordar '!' como decisión
 IGUAL: '=';
 
 GUION : '-';
